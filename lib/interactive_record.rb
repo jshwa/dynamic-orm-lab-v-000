@@ -10,10 +10,12 @@ class InteractiveRecord
     DB[:conn].results_as_hash = true
 
     table_info = DB[:conn].execute("PRAGMA table_info(#{table_name})")
-    column_names = table_info.collect {|info| info.name}.flatten
+    column_names = table_info.collect {|info| info["name"]}.compact
   end
 
   def initialize(options = {})
-    self.column_names
+    options.each do |name, value|
+      self.send("#{name}=", value)
+    end
   end
 end
