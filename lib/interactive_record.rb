@@ -43,7 +43,7 @@ class InteractiveRecord
 
   def self.find_by(attributes)
     attributes.map do |col_name, value|
-      DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE ? = ?", "#{col_name}", value)
+      DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{col_name} = ?", value)
     end
   end
 end
