@@ -41,6 +41,6 @@ class InteractiveRecord
   end
 
   def self.find_by(attributes)
-    DB[:conn].execute("SELECT * FROM #{table_name_for_insert}")
+    DB[:conn].execute("SELECT * FROM #{self.table_name}")
   end
 end
