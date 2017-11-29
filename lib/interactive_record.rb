@@ -41,8 +41,8 @@ class InteractiveRecord
   end
 
   def self.find_by(attributes)
+    binding.pry
     attributes.map do |name, value|
-      binding.pry
       DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE ? = ?", name.to_s, value)
     end
   end
